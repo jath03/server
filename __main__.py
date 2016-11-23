@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3.5
+#!/usr/bin/python3.5
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import threading, pickle, re, subprocess, urllib, os, pathlib
 
@@ -120,18 +120,31 @@ class MyHandler(BaseHTTPRequestHandler):
         self.send_header('Allow', meth)
         self.end_headers()
 
-server_address = ('192.168.5.1', 6789)
+addresses = list()
+
+server_address = ('192.168.5.1', 80)
+addresses.append(server_address)
+addresses.append(('192.168.5.1', 6789))
 def run():
     print('starting server ...')
-    httpd = HTTPServer(server_address, MyHandler)
+    httpd = HTTPServer(addresses[0], MyHandler)
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
         pass
-bg_server= threading.Thread(target = run)
+def run1():
+    httpd = HTTPServer(addresses[1], MyHandler)
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
 
+bg_server= threading.Thread(target = run)
+bg_server1 = threading.Thread(target=run1)
 if __name__ == '__main__':
     bg_server.start()
-    print('\nserver started at %s:%s'% server_address)
+    bg_server1.start()
+    for addr in addresses:
+        print('\nserver started at %s:%s'% addr)
 
 

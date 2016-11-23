@@ -82,9 +82,9 @@ def main():
                 <div id="nav">
                         <h4>Hello, {name}</h4>
                         <ul>
+				<li><a href="http://192.168.5.1:6789/login">Home</a></li>
                                 <li><a href="sites.html">My favorite sites</a></li>
                                 <li><a href="secret-fake.html">Secret site</a></li>
-                                <li><a href="fun.html">I'm bored</a></li>
 				<li><a href="http://192.168.5.1:6789/login?redirect=projects">My projects</a></li>
                         </ul>
                 </div>

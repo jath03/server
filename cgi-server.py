@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3.5
+#!/usr/bin/python3.5
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import threading, pickle, re, subprocess, urllib, os, pathlib
 
