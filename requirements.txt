@@ -26,7 +26,6 @@ psutil==5.0.1
 pyasn1==0.1.9
 pyasn1-modules==0.0.8
 pycurl==7.43.0
-pygobject==3.22.0
 pyinotify==0.9.4
 pyOpenSSL==16.2.0
 pyserial==2.6
