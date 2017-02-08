@@ -21,7 +21,6 @@ oauth2client==4.0.0
 pathlib==1.0.1
 picamera==1.12
 picraft==1.0
-pigpio==1.30
 Pillow==3.4.2
 psutil==5.0.1
 pyasn1==0.1.9
