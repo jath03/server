@@ -2,7 +2,6 @@ asyncio==3.4.3
 certifi==2016.9.26
 chardet==2.3.0
 click==6.6
-codebug-i2c-tether==0.2.3
 codebug-tether==0.7.0
 colorama==0.3.2
 cryptography==1.5.3
