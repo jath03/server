@@ -4,7 +4,7 @@ import threading, pickle, re, subprocess, urllib, os, pathlib
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        self.myLog()
+#        self.myLog()
         f_type_map = {'.html': 'text/html', '.css': 'text/css', '.ico': 'image/x-icon', '.jpg': 'image/jpeg', '.png': 'image/png'}
         t_type = re.compile('\/|(\.\w*)')
         r_file = self.path.split('?')
@@ -65,7 +65,7 @@ class MyHandler(BaseHTTPRequestHandler):
             file = subprocess.run(['python3.5', '/home/jack/projects/server/files%s'% r_file[0]], stdout=subprocess.PIPE)
             self.wfile.write(file.stdout)
     def do_POST(self):
-        self.myLog()
+#        self.myLog()
         try:
             res = 200
             f = None
