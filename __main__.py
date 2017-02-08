@@ -8,7 +8,7 @@ par.add_argument("-p", "--port", nargs=1, action='store')
 args = par.parse_args()
 port = int(args.port[0])
 addresses = list()
-server_address = (ni.ifaddresses('wlan0')[2][0]['addr'], port)
+server_address = (socket.gethostbyname(socket.gethostname()), port)
 print(server_address)
 def run():
     print('starting server ...')
@@ -18,6 +18,4 @@ def run():
     except KeyboardInterrupt:
         pass
 bg_server = threading.Thread(target=run)
-if __name__ == "__main__":
-    bg_server.start()
-    print('\nserver started at {}:{}'.format(server_address))
+bg_server.start()
