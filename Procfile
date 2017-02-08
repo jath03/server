@@ -1,1 +1,1 @@
-web: python __main__.py -p $PORT
+web: python app.py -p $PORT
