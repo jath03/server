@@ -10,13 +10,13 @@ class MyHandler(BaseHTTPRequestHandler):
         r_file = self.path.split('?')
         requested_type = t_type.findall(self.path)
         ex = requested_type[-1]
-        root = pathlib.PurePath(dir_path = os.path.dirname(os.path.realpath(__file__)) + 'files'
+        root = pathlib.PurePath(dir_path = os.path.dirname(os.path.realpath(__file__)) + 'files')
         print(root)
         if ex != '.py' and ex != '':
             res = 200
             fileToSend = None
             hds = []
-            root = pathlib.PurePath(dir_path = os.path.dirname(os.path.realpath(__file__)) + 'files'
+            root = pathlib.PurePath(dir_path = os.path.dirname(os.path.realpath(__file__)) + 'files')
             f = root.joinpath(r_file[0].strip('/'))
             if not pathlib.Path(f).exists():
                 res = 404
