@@ -65,7 +65,7 @@ class MyHandler(BaseHTTPRequestHandler):
             self.end_headers()
             p = root / r_file[0]
             print(p)
-            file = subprocess.run(['python', p], stdout=subprocess.PIPE)
+            file = subprocess.run(['python', str(p)], stdout=subprocess.PIPE)
             self.wfile.write(file.stdout)
     def do_POST(self):
 #        self.myLog()
