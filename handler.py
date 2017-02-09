@@ -64,8 +64,8 @@ class MyHandler(BaseHTTPRequestHandler):
             self.send_header('Content-Type', 'text/html')
             self.end_headers()
             p = pathlib.Path('/')
-            print(list(p.glob('**')))
-            file = subprocess.run(['python', '/appfiles/files' + r_file[0]], stdout=subprocess.PIPE)
+            #print(list(p.glob('**')))
+            file = subprocess.run(['python', '/app/files' + r_file[0]], stdout=subprocess.PIPE)
             self.wfile.write(file.stdout)
     def do_POST(self):
 #        self.myLog()
