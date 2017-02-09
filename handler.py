@@ -10,11 +10,13 @@ class MyHandler(BaseHTTPRequestHandler):
         r_file = self.path.split('?')
         requested_type = t_type.findall(self.path)
         ex = requested_type[-1]
+        root = pathlib.PurePath(dir_path = os.path.dirname(os.path.realpath(__file__)) + 'files')
+        print(root)
         if ex != '.py' and ex != '':
             res = 200
             fileToSend = None
             hds = []
-            root = pathlib.PurePath('/home/jack/projects/server/files')
+            root = pathlib.PurePath(dir_path = os.path.dirname(os.path.realpath(__file__)) + 'files')
             f = root.joinpath(r_file[0].strip('/'))
             if not pathlib.Path(f).exists():
                 res = 404
@@ -51,7 +53,7 @@ class MyHandler(BaseHTTPRequestHandler):
             return
         else:
             try:
-                with open('/home/jack/projects/server/files/params.dat', 'wb') as file:
+                with open(root + 'params.dat', 'wb') as file:
                     d = dict()
                     for pair in list(r_file[1].split('&')):
                         key, value = pair.split('=')
