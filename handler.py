@@ -52,7 +52,7 @@ class MyHandler(BaseHTTPRequestHandler):
             return
         else:
             try:
-                with open('/tmp/params.dat'), 'wb') as file:
+                with open('/tmp/params.dat', 'wb') as file:
                     d = dict()
                     for pair in list(r_file[1].split('&')):
                         key, value = pair.split('=')
