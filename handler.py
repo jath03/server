@@ -63,6 +63,7 @@ class MyHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')
             self.end_headers()
+            print(root)
             p = root / r_file[0]
             print(p)
             file = subprocess.run(['python', str(p)], stdout=subprocess.PIPE)
