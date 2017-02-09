@@ -17,7 +17,7 @@ with open('/tmp/params.dat', 'rb') as f:
 subprocess.run('sudo rm /tmp/flow.dat /tmp/params.dat', shell=True)
 try:
   print(os.environ["GOOGLE-CLIENT-SECRETS"])
-  flow = FFC(json.loads(os.environ['GOOGLE-CLIENT-SECRETS'].replace('\'', '\"'), scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com/{}'.format(str(params['redirect'])))
+  flow = FFC(json.loads(os.environ['GOOGLE-CLIENT-SECRETS'].replace('\'', '\"')), scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com/{}'.format(str(params['redirect'])))
 except (KeyError, TypeError) as err:
   flow = FFC('/home/jack/.creds/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
 with open('/tmp/flow.dat', 'wb') as f:
