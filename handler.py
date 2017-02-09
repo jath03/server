@@ -16,7 +16,6 @@ class MyHandler(BaseHTTPRequestHandler):
             res = 200
             fileToSend = None
             hds = []
-            root = pathlib.PurePath(dir_path = os.path.dirname(os.path.realpath(__file__)) + 'files')
             f = root.joinpath(r_file[0].strip('/'))
             if not pathlib.Path(f).exists():
                 res = 404
@@ -53,7 +52,7 @@ class MyHandler(BaseHTTPRequestHandler):
             return
         else:
             try:
-                with open(root + 'params.dat', 'wb') as file:
+                with open(root.joinpath('params.dat'), 'wb') as file:
                     d = dict()
                     for pair in list(r_file[1].split('&')):
                         key, value = pair.split('=')
