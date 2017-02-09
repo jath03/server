@@ -22,7 +22,7 @@ try:
   print(os.environ["GOOGLE-CLIENT-SECRETS"])
   flow = FFC(json.loads(io.StringIO(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"'))), scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com/{}'.format(str(params['redirect'])))
 except (KeyError, TypeError) as err:
-  flow = FFC(json.loads(io.StringIo(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"'))), scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
+  flow = FFC(json.loads(io.StringIO(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"'))), scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
 with open('/tmp/flow.dat', 'wb') as f:
   pickle.dump(flow, f)
 
