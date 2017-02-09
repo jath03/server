@@ -18,11 +18,14 @@ with open('/tmp/params.dat', 'rb') as f:
   except EOFError:
     params = None
 subprocess.run('sudo rm /tmp/flow.dat /tmp/params.dat', shell=True)
+
+with open('/tmp/client_secrets.json', 'w') as f:
+  json.dump(os.environ['GOOGLE-CLIENT-SECRETS'], f)
+
 try:
-  print(os.environ["GOOGLE-CLIENT-SECRETS"])
   flow = FFC(io.StringIO(json.loads(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"'))), scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com/{}'.format(str(params['redirect'])))
 except (KeyError, TypeError) as err:
-  flow = FFC(io.StringIO(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"')), scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
+  flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
 with open('/tmp/flow.dat', 'wb') as f:
   pickle.dump(flow, f)
 
