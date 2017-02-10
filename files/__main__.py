@@ -31,7 +31,7 @@ def main():
         <h3>Redirecting ...</h3>
         <script>window.location = "http://jath03.herokuapp.com/login";</script>
     </body>
-</html>"""
+</html>""")
     else:
         try:
             credentials = flow.step2_exchange(params['code'])
