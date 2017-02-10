@@ -12,22 +12,22 @@ import os
 import io
 
 
-with open('/tmp/params.dat', 'rb') as f:
+with open('/app/files/params.dat', 'rb') as f:
   try:
     params = pickle.load(f)
   except EOFError:
     params = None
-subprocess.run('sudo rm /tmp/flow.dat /tmp/params.dat', shell=True)
+subprocess.run('sudo rm /app/files/flow.dat /app/files/params.dat', shell=True)
 w = json.loads(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"'))
 print(w)
 with open('/tmp/client_secrets.json', 'w') as f:
   json.dump(w, f)
 
 try:
-  flow = FFC(io.StringIO(json.loads(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"'))), scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com/{}'.format(str(params['redirect'])))
+  flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com/{}'.format(str(params['redirect'])))
 except (KeyError, TypeError) as err:
   flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
-with open('/tmp/flow.dat', 'wb') as f:
+with open('/app/files/flow.dat', 'wb') as f:
   pickle.dump(flow, f)
 
 
@@ -47,4 +47,3 @@ if __name__ == '__main__':
     main()
   except KeyboardInterrupt:
     subprocess.run(['sudo rm /home/jack/.creds/credentials.dat'])
-

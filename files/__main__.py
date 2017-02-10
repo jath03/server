@@ -16,9 +16,9 @@ def main():
     # credentials file is provided. If the file does not exist, it is
     # created. This object can only hold credentials for a single user, so
     # as-written, this script can only handle a single user.
-    with open('/home/jack/projects/server/files/flow.dat', 'r+b') as f:
+    with open('/app/files/flow.dat', 'r+b') as f:
         flow = pickle.load(f)
-    with open('/home/jack/projects/server/files/params.dat', 'r+b') as file:
+    with open('/app/files/params.dat', 'r+b') as file:
         params = pickle.load(file)
     try:
         credentials = flow.step2_exchange(params['code'])
