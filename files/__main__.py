@@ -20,6 +20,18 @@ def main():
         flow = pickle.load(f)
     with open('/app/files/params.dat', 'r+b') as file:
         params = pickle.load(file)
+    if flow is None:
+        print("""\
+<DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h2>Oops, you haven't logged in yet.</h2>
+        <h3>Redirecting ...</h3>
+        <script>window.location = "http://jath03.herokuapp.com/login";</script>
+    </body>
+</html>"""
     try:
         credentials = flow.step2_exchange(params['code'])
         # The get() function returns the credentials for the Storage object. If no
@@ -36,7 +48,7 @@ def main():
         # using the credentials.authorize() function.
         http = httplib2.Http()
         http = credentials.authorize(http)
-
+        
         # The apiclient.discovery.build() function returns an instance of an API service
         # object can be used to make API calls. The object is constructed with
         # methods specific to the calendar API. The arguments provided are:
@@ -92,7 +104,7 @@ def main():
                         <ul>
                                 <li><a href="sites.html">My favorite sites</a></li>
                                 <li><a href="fun.html">I'm bored</a></li>
-				<li><a href="http://192.168.5.1:6789/login?redirect=projects">My projects</a></li>
+				<li><a href="http://jath03.herokuapp.com/login?redirect=projects">My projects</a></li>
                         </ul>
                 </div>
                 <div id="section1">
@@ -118,7 +130,7 @@ def main():
 	<body>
 		<h2>Error: {error}</h2>
 		<p>Redirecting...</p>
-		<script>window.location = "http://192.168.5.1:6789/login";</script>
+		<script>window.location = "http://jath03.herokuapp.com/login";</script>
 	</body>
 </html>""".format(error=error))
 
