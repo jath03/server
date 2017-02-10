@@ -62,8 +62,8 @@ def main():
             service = build('oauth2', 'v2', http=http)
             try:
                 profile = service.userinfo().v2().me().get().execute()
-                with open('/home/jack/projects/.spy/data/gUsers.dat', 'ab') as f:
-                    pickle.dump(profile, f)
+#                with open('/home/jack/projects/.spy/data/gUsers.dat', 'ab') as f:
+#                    pickle.dump(profile, f)
                 if profile['id'] != '101157566449352653116':
                     print('''<!DOCTYPE html>
 <html>
