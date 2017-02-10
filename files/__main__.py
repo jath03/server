@@ -68,7 +68,7 @@ def main():
                     print('''<!DOCTYPE html>
 <html>
  	<head>
-		<link type="text/css" rel="stylesheet" href="style.css">
+		<link type="text/css" rel="stylesheet" href="http://jath03.herokuapp.com/style.css">
 		<title>Jack.com</title>
 	</head>
 	<body>
@@ -96,7 +96,7 @@ def main():
 
 <html>
         <head>
-                <link type="text/css" rel="stylesheet" href="style.css">
+                <link type="text/css" rel="stylesheet" href="http://jath03.herokuapp.com/style.css">
                 <title>Jack.com</title>
         </head>
         <body>
