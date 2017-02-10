@@ -19,7 +19,10 @@ def main():
     with open('/app/files/flow.dat', 'r+b') as f:
         flow = pickle.load(f)
     with open('/app/files/params.dat', 'r+b') as file:
-        params = pickle.load(file)
+        try:
+            params = pickle.load(file)
+        except EOFError:
+            params = None
     if flow is None:
         print("""\
 <DOCTYPE html>
