@@ -52,6 +52,7 @@ class MyHandler(BaseHTTPRequestHandler):
             return
         else:
             try:
+                print('params created')
                 with open('/app/files/params.dat', 'wb') as file:
                     d = dict()
                     for pair in list(r_file[1].split('&')):
