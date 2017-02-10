@@ -18,7 +18,7 @@ with open('/tmp/params.dat', 'rb') as f:
   except EOFError:
     params = None
 subprocess.run('sudo rm /tmp/flow.dat /tmp/params.dat', shell=True)
-w = os.environ['GOOGLE-CLIENT-SECRETS']
+w = json.load(os.environ['GOOGLE-CLIENT-SECRETS'])
 print(w)
 with open('/tmp/client_secrets.json', 'w') as f:
   json.dump(w, f)
