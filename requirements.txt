@@ -41,3 +41,4 @@ virtualenv==15.1.0
 websockets==3.2
 Werkzeug==0.9.6
 keyring
+keyring.alt
