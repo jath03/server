@@ -27,7 +27,8 @@ def main():
         st = Storage('server', c['user'])
         if st.get() is not None:
             credentials = st.get()
-    except TypeError:
+    except TypeError as err:
+        print(err)
         try:
             with open('/app/files/flow.dat', 'r+b') as f:
                 flow = pickle.load(f)
