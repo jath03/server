@@ -69,7 +69,7 @@ def main():
             profile = service.userinfo().v2().me().get().execute()
 #                with open('/home/jack/projects/.spy/data/gUsers.dat', 'ab') as f:
 #                    pickle.dump(profile, f)
-            if not c['user']:
+            if not c:
                 with open('/app/files/hds.dat', 'wb') as f:
                     pickle.dump({'Set-Cookie': 'user={u}; Max-Age=2592000\r\n'.format(u=profile['id'])}, f)
             if profile['id'] != '101157566449352653116':
