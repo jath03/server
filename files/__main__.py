@@ -9,6 +9,7 @@ import pathlib
 import subprocess
 import pickle
 import tools
+import sys
 
 def main():
     # Create a Storage object. This object holds the credentials that your
@@ -17,7 +18,6 @@ def main():
     # created. This object can only hold credentials for a single user, so
     # as-written, this script can only handle a single user.
     c = tools.cookies(method='read')
-    print('COOKIES ARE:', c)
     try:
         with open('/app/files/session.dat', 'r+b') as file:
             d = pickle.load(file)
@@ -37,7 +37,6 @@ def main():
                 credentials = flow.step2_exchange(d['params']['code'])
         except (EOFError, TypeError) as err:
             credentials = None
-            print('ERROR:', err)
             print('''\
 <!DOCTYPE html>
 <html>
@@ -49,7 +48,6 @@ def main():
     </body>
 </html>''') 
             exit()
-    print('CREDENTIALS ARE:', credentials)
     try:
         # The get() function returns the credentials for the Storage object. If no
         # credentials were found, None is returned.
