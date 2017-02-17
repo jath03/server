@@ -73,6 +73,7 @@ class MyHandler(BaseHTTPRequestHandler):
             file = subprocess.run(['python', '/app/files' + r_file[0]], stdout=subprocess.PIPE)
             with open('/app/files/hds.dat', 'rb') as f:
                 for key, value in pickle.load(f).items():
+                    print(key, value)
                     self.send_header(key, value)
             self.end_headers()
             self.wfile.write(file.stdout)
