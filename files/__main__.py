@@ -17,6 +17,7 @@ def main():
     # created. This object can only hold credentials for a single user, so
     # as-written, this script can only handle a single user.
     c = tools.cookies(method='read')
+    print(c)
     try:
         with open('/app/files/session.dat', 'r+b') as file:
             d = pickle.load(file)
@@ -71,7 +72,9 @@ def main():
 #                    pickle.dump(profile, f)
             if not c:
                 with open('/app/files/hds.dat', 'wb') as f:
-                    pickle.dump({'Set-Cookie': 'user={u}; Max-Age=2592000\r\n'.format(u=profile['id'])}, f)
+                    da = {'Set-Cookie': 'user={u}; Max-Age=2592000\r\n'.format(u=profile['id'])}
+                    print(da)
+                    pickle.dump(da, f)
             if profile['id'] != '101157566449352653116':
                 print('''<!DOCTYPE html>
 <html>
