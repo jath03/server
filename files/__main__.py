@@ -18,7 +18,7 @@ def main():
     # as-written, this script can only handle a single user.
     c = tools.cookies(method='read')
     try:
-        with open('/home/jack/projects/local/server/files/session.dat', 'r+b') as file:
+        with open('/app/files/session.dat', 'r+b') as file:
             d = pickle.load(file)
     except EOFError:
         d = None
@@ -28,7 +28,7 @@ def main():
             credentials = st.get()
     except TypeError:
         try:
-            with open('/home/jack/projects/local/server/files/flow.dat', 'r+b') as f:
+            with open('/app/files/flow.dat', 'r+b') as f:
                 flow = pickle.load(f)
                 credentials = flow.step2_exchange(d['params']['code'])
         except (EOFError, TypeError):
