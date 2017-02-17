@@ -33,7 +33,8 @@ def main():
             with open('/app/files/flow.dat', 'r+b') as f:
                 flow = pickle.load(f)
                 credentials = flow.step2_exchange(d['params']['code'])
-        except (EOFError, TypeError):
+        except (EOFError, TypeError) as err:
+            print(err)
             print('''\
 <!DOCTYPE html>
 <html>
