@@ -72,10 +72,13 @@ class MyHandler(BaseHTTPRequestHandler):
             self.send_header('Content-Type', 'text/html')
             file = subprocess.run(['python', '/app/files' + r_file[0]], stdout=subprocess.PIPE)
             print(file.stdout)
-            with open('/app/files/hds.dat', 'rb') as f:
-                for key, value in pickle.load(f).items():
-                    print(key, value)
-                    self.send_header(key, value)
+            try:
+                with open('/app/files/hds.dat', 'rb') as f:
+                    for key, value in pickle.load(f).items():
+                        print(key, value)
+                        self.send_header(key, value)
+            except FileNotFoundError:
+                pass
             self.end_headers()
             self.wfile.write(file.stdout)
     def do_POST(self):
