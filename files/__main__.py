@@ -71,7 +71,7 @@ def main():
 #                    pickle.dump(profile, f)
             if not c['user']:
                 with open('/app/files/hds.dat', 'wb') as f:
-                    pickle.dump('Set-Cookie: user={u}; Max-Age=2592000\r\n'.format(u=profile['id']), f)
+                    pickle.dump(dict(Set-Cookie = 'user={u}; Max-Age=2592000\r\n'.format(u=profile['id'])), f)
             if profile['id'] != '101157566449352653116':
                 print('''<!DOCTYPE html>
 <html>
