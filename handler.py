@@ -19,8 +19,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 c[x] = y
         except:
             cookies = None
-        print(cookies)
-        print(c)
+            c = None
         tools.cookies(cookie=c, method='write')
         if ex != '.py' and ex != '':
             res = 200
