@@ -10,10 +10,10 @@ def log(data, filepath, timestamp=True):
             pickle.dump(str(data), f)
 def cookies(cookie=None, method='read'):
     if method == 'read':
-        with open('/home/jack/projects/local/server/files/cookies.dat', 'rb') as f:
+        with open('/app/files/cookies.dat', 'rb') as f:
             return pickle.load(f)
     elif method == 'write':
-        with open('/home/jack/projects/local/server/files/cookies.dat', 'wb') as f:
+        with open('/app/files/cookies.dat', 'wb') as f:
             return pickle.dump(cookie, f)
     else:
         raise ValueError('method must be either \"read\" or \"write\"')
