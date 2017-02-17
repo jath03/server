@@ -46,6 +46,7 @@ def main():
     </body>
 </html>''') 
             exit()
+    print('CREDENTIALS ARE:', credentials)
     try:
         # The get() function returns the credentials for the Storage object. If no
         # credentials were found, None is returned.
@@ -78,6 +79,8 @@ def main():
                     da = {'Set-Cookie': 'user={u}; Max-Age=2592000\r\n'.format(u=d[0]['id'])}
                     print('SETTING COOKIE:', da)
                     pickle.dump(da, f)
+                st = Storage('server', d[0]['id'])
+                st.put(credentials) 
             if profile['id'] != '101157566449352653116':
                 print('''<!DOCTYPE html>
 <html>
