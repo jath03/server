@@ -138,8 +138,7 @@ def main():
                         <p>Id: {id}</p>
                 </div>
         </body>
-</html>'''.format(name=profile['name'], pic=profile['picture'], email=profile['email'], id=profile['id'],
-                  code=d['params']['code']))
+</html>'''.format(name=profile['name'], pic=profile['picture'], email=profile['email'], id=profile['id']))
         except AccessTokenRefreshError:
                 # The AccessTokenRefreshError exception is raised if the credentials
                 # have been revoked by the user or they have expired.
