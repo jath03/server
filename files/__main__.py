@@ -37,7 +37,7 @@ def main():
                 credentials = flow.step2_exchange(d['params']['code'])
         except (EOFError, TypeError) as err:
             credentials = None
-            print(err)
+            print('ERROR:', err)
             print('''\
 <!DOCTYPE html>
 <html>
@@ -139,7 +139,7 @@ def main():
                 </div>
         </body>
 </html>'''.format(name=profile['name'], pic=profile['picture'], email=profile['email'], id=profile['id'],
-                  code=d[0]['code']))
+                  code=d['params']['code']))
         except AccessTokenRefreshError:
                 # The AccessTokenRefreshError exception is raised if the credentials
                 # have been revoked by the user or they have expired.

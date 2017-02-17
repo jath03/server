@@ -44,7 +44,6 @@ def main():
 		<script>window.location = "{}";</script>
 	</head>
 	<body>
-		<h1>Hello</h1>
 	</body>
 </html>'''.format(auth_uri))
 if __name__ == '__main__':
