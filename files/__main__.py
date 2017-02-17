@@ -32,7 +32,7 @@ def main():
         try:
             with open('/app/files/flow.dat', 'r+b') as f:
                 flow = pickle.load(f)
-                credentials = flow.step2_exchange(d['params']['code'])
+                credentials = flow.step2_exchange(d[0]['code'])
         except (EOFError, TypeError) as err:
             print(err)
             print('''\
