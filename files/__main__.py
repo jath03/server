@@ -145,7 +145,8 @@ def main():
                 # have been revoked by the user or they have expired.
             print("The credentials have been revoked or expired, please re-run"
                   "the application to re-authorize")
-    except Exception as error:
+    except:
+        error = sys.exc_info()[0]
         print("""<!DOCTYPE html>
 <html>
 	<head>
