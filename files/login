@@ -29,10 +29,11 @@ if not cookies:
     flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
   with open('/app/files/flow.dat', 'wb') as f:
     pickle.dump(flow, f)
-
+  auth_uri = flow.step1_get_authorize_url()
+else:
+  auth_uri = 'http://jath03.herokuapp.com/'
 
 def main():
-  auth_uri = flow.step1_get_authorize_url()
   print('''<!DOCTYPE html>
 <html>
 	<head>
