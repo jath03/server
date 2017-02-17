@@ -78,7 +78,6 @@ def main():
             if c is None or st.get() is None:
                 with open('/app/files/hds.dat', 'wb') as f:
                     da = {'Set-Cookie': 'user={u}; Max-Age=2592000\r\n'.format(u=profile['id'])}
-                    print('SETTING COOKIE:', da)
                     pickle.dump(da, f)
                 st.put(credentials) 
             if profile['id'] != '101157566449352653116':
