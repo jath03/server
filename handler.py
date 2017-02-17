@@ -58,7 +58,7 @@ class MyHandler(BaseHTTPRequestHandler):
         else:
             try:
                 with open('/app/files/session.dat', 'wb') as file:
-                    d = dict()
+                    d = list()
                     params = dict()
                     for pair in list(r_file[1].split('&')):
                         key, value = pair.split('=')
