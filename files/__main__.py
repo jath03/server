@@ -42,7 +42,8 @@ def main():
         <h3>You are not authenticated, Redirecting...</h3>
         <script>window.location="http://jath03.herokuapp.com/login"</script>
     </body>
-</html>''')
+</html>''') 
+            exit()
     try:
         # The get() function returns the credentials for the Storage object. If no
         # credentials were found, None is returned.
