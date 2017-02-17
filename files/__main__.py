@@ -17,7 +17,7 @@ def main():
     # created. This object can only hold credentials for a single user, so
     # as-written, this script can only handle a single user.
     c = tools.cookies(method='read')
-    print(c)
+    print('COOKIES ARE:', c)
     try:
         with open('/app/files/session.dat', 'r+b') as file:
             d = pickle.load(file)
@@ -149,6 +149,4 @@ def main():
 	</body>
 </html>""".format(error=error))
 
-
-if __name__ == '__main__':
-    main()
+main()
