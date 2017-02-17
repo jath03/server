@@ -13,10 +13,15 @@ class MyHandler(BaseHTTPRequestHandler):
         root = pathlib.PurePath('/app/files')
         try:
             cookies = [h.split('=') for h in self.headers['Cookie'].split(';')]
+            c = dict()
+            for x, y in cookies:
+                print(x, y)
+                c[x] = y
         except:
             cookies = None
-        print(root)
-        tools.cookies(cookie=cookies, method='write')
+        print(cookies)
+        print(c)
+        tools.cookies(cookie=c, method='write')
         if ex != '.py' and ex != '':
             res = 200
             fileToSend = None
