@@ -28,7 +28,7 @@ def main():
             credentials = st.get()
     except TypeError:
         try:
-            with open('/home/jack/projects/local/server/files/flow.dat', 'r+$
+            with open('/home/jack/projects/local/server/files/flow.dat', 'r+b') as f:
                 flow = pickle.load(f)
                 credentials = flow.step2_exchange(d['params']['code'])
         except (EOFError, TypeError):
