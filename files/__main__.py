@@ -18,7 +18,7 @@ def main():
     # as-written, this script can only handle a single user.
     c = tools.cookies(method='read')
     try:
-        with open('/home/jack/projects/local/server/files/session.dat', 'r+b$
+        with open('/home/jack/projects/local/server/files/session.dat', 'r+b') as file:
             d = pickle.load(file)
     except EOFError:
         d = None
