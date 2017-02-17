@@ -11,7 +11,12 @@ class MyHandler(BaseHTTPRequestHandler):
         requested_type = t_type.findall(self.path)
         ex = requested_type[-1]
         root = pathlib.PurePath('/app/files')
+        try:
+            cookies = h.split('=' for h in self.headers['Cookie'].split(';')]
+        except:
+            cookies = None
         print(root)
+        tools.cookies(cookie=cookie, method='write')
         if ex != '.py' and ex != '':
             res = 200
             fileToSend = None
@@ -52,21 +57,21 @@ class MyHandler(BaseHTTPRequestHandler):
             return
         else:
             try:
-                print('params created')
-                with open('/app/files/params.dat', 'wb') as file:
+                with open('/app/files/session.dat', 'wb') as file:
                     d = dict()
+                    params = dict()
                     for pair in list(r_file[1].split('&')):
                         key, value = pair.split('=')
-                        d[key] = str(value)
+                        params[key] = str(value)
+                    d.append(params)
                     pickle.dump(d, file)
             except IndexError:
                 pass
             self.send_response(200)
+            self.send_header('Content-Encoding', 'utf-8')
             self.send_header('Content-Type', 'text/html')
-            self.end_headers()
-            p = pathlib.Path('/')
-            #print(list(p.glob('**')))
             file = subprocess.run(['python', '/app/files' + r_file[0]], stdout=subprocess.PIPE)
+            self.end_headers()
             self.wfile.write(file.stdout)
     def do_POST(self):
 #        self.myLog()

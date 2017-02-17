@@ -1,6 +1,6 @@
 from apiclient.discovery import build
 from oauth2client import tools
-from oauth2client.file import Storage
+from oauth2client.contrib.keyring_storage import Storage
 from oauth2client.client import AccessTokenRefreshError
 from oauth2client.client import flow_from_clientsecrets as FFC
 import httplib2
@@ -10,25 +10,25 @@ import subprocess
 import pickle
 import os
 import io
+import tools
 
-
-with open('/app/files/params.dat', 'rb') as f:
+with open('/app/files/session.dat', 'rb') as f:
   try:
-    params = pickle.load(f)
+    d = pickle.load(f)
   except EOFError:
-    params = None
-subprocess.run('sudo rm /app/files/flow.dat /app/files/params.dat', shell=True)
+    d = None
+cookies = tools.cookies(method='read')
+subprocess.run('sudo rm /app/files/flow.dat /app/files/session.dat', shell=True)
 w = json.loads(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"'))
-print(w)
 with open('/tmp/client_secrets.json', 'w') as f:
   json.dump(w, f)
-
-try:
-  flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com/{}'.format(str(params['redirect'])))
-except (KeyError, TypeError) as err:
-  flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
-with open('/app/files/flow.dat', 'wb') as f:
-  pickle.dump(flow, f)
+if not cookies['user']:
+  try:
+    flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com/{}'.format(str(params['redirect'])))
+  except (KeyError, TypeError) as err:
+    flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
+  with open('/app/files/flow.dat', 'wb') as f:
+    pickle.dump(flow, f)
 
 
 def main():
@@ -43,7 +43,4 @@ def main():
 	</body>
 </html>'''.format(auth_uri))
 if __name__ == '__main__':
-  try:
-    main()
-  except KeyboardInterrupt:
-    subprocess.run(['sudo rm /home/jack/.creds/credentials.dat'])
+  main()
