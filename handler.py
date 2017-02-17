@@ -16,7 +16,7 @@ class MyHandler(BaseHTTPRequestHandler):
         except:
             cookies = None
         print(root)
-        tools.cookies(cookie=cookie, method='write')
+        tools.cookies(cookie=cookies, method='write')
         if ex != '.py' and ex != '':
             res = 200
             fileToSend = None
