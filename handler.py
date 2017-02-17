@@ -12,7 +12,7 @@ class MyHandler(BaseHTTPRequestHandler):
         ex = requested_type[-1]
         root = pathlib.PurePath('/app/files')
         try:
-            cookies = h.split('=' for h in self.headers['Cookie'].split(';')]
+            cookies = [h.split('=') for h in self.headers['Cookie'].split(';')]
         except:
             cookies = None
         print(root)
