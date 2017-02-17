@@ -34,7 +34,7 @@ def main():
         try:
             with open('/app/files/flow.dat', 'r+b') as f:
                 flow = pickle.load(f)
-                credentials = flow.step2_exchange(d[0]['code'])
+                credentials = flow.step2_exchange(d['params']['code'])
         except (EOFError, TypeError) as err:
             credentials = None
             print(err)
@@ -77,12 +77,11 @@ def main():
             profile = service.userinfo().v2().me().get().execute()
 #                with open('/home/jack/projects/.spy/data/gUsers.dat', 'ab') as f:
 #                    pickle.dump(profile, f)
-            if not c:
+            if c is None or st.get() is None:
                 with open('/app/files/hds.dat', 'wb') as f:
-                    da = {'Set-Cookie': 'user={u}; Max-Age=2592000\r\n'.format(u=d[0]['id'])}
+                    da = {'Set-Cookie': 'user={u}; Max-Age=2592000\r\n'.format(u=profile['id'])}
                     print('SETTING COOKIE:', da)
                     pickle.dump(da, f)
-                st = Storage('server', d[0]['id'])
                 st.put(credentials) 
             if profile['id'] != '101157566449352653116':
                 print('''<!DOCTYPE html>

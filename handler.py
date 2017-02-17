@@ -63,12 +63,12 @@ class MyHandler(BaseHTTPRequestHandler):
         else:
             try:
                 with open('/app/files/session.dat', 'wb') as file:
-                    d = list()
+                    d = dict()
                     params = dict()
                     for pair in list(r_file[1].split('&')):
                         key, value = pair.split('=')
                         params[key] = str(value)
-                    d.append(params)
+                    d['params'] = params
                     pickle.dump(d, file)
             except IndexError:
                 pass
