@@ -27,6 +27,8 @@ def main():
         st = Storage('server', c['user'])
         if st.get() is not None:
             credentials = st.get()
+        else:
+            raise TypeError
     except TypeError as err:
         print(err)
         try:
@@ -34,6 +36,7 @@ def main():
                 flow = pickle.load(f)
                 credentials = flow.step2_exchange(d[0]['code'])
         except (EOFError, TypeError) as err:
+            credentials = None
             print(err)
             print('''\
 <!DOCTYPE html>
