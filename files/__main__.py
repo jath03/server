@@ -11,18 +11,14 @@ import pickle
 import tools
 import sys
 
-def main():
+def main(d):
+    print('MAIN IS RUNNING IN MAIN')
     # Create a Storage object. This object holds the credentials that your
     # application needs to authorize access to the user's data. The name of the
     # credentials file is provided. If the file does not exist, it is
     # created. This object can only hold credentials for a single user, so
     # as-written, this script can only handle a single user.
     c = tools.cookies(method='read')
-    try:
-        with open('/app/files/session.dat', 'r+b') as file:
-            d = pickle.load(file)
-    except EOFError:
-        d = None
     try:
         st = Storage('server', c['user'])
         if st.get() is not None:
@@ -154,4 +150,4 @@ def main():
 	</body>
 </html>""".format(error=error))
 
-main()
+
