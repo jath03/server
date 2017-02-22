@@ -67,7 +67,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     key, value = pair.split('=')
                     params[key] = str(value)
                 d['params'] = params
-                f = r_file[0].split('.')[0]
+                f = r_file[0]
                 print(f)
             except IndexError:
                 f = 'index'
