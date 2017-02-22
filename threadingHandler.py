@@ -63,9 +63,12 @@ class MyHandler(BaseHTTPRequestHandler):
             try:
                 d = dict()
                 params = dict()
-                for pair in list(r_file[1].split('&')):
-                    key, value = pair.split('=')
-                    params[key] = str(value)
+                try:
+                    for pair in list(r_file[1].split('&')):
+                        key, value = pair.split('=')
+                        params[key] = str(value)
+                except IndexError:
+                    pass
                 d['params'] = params
                 f = r_file[0]
                 print(f)
