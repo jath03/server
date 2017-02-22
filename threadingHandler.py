@@ -70,14 +70,13 @@ class MyHandler(BaseHTTPRequestHandler):
                 f = r_file[0].split('.')[0]
                 print(f)
                 exec('from files import {}'.format(f))
-                exec('{}.main(d)'.format(f))
             except:
                 print(sys.exc_info()[0])
             self.send_response(200)
             self.send_header('Content-Encoding', 'utf-8')
             self.send_header('Content-Type', 'text/html')
-            with tools.Capture() as output:
-                '/app/files' + r_file[0]
+            with tools.Capturing() as output:
+                exec('{}.main(d)'.format(f))
             if l.data['headers']:
                 for k, v in l.data['headers']:
                     self.send_header(k, v)
