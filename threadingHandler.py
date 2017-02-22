@@ -71,6 +71,8 @@ class MyHandler(BaseHTTPRequestHandler):
                     pass
                 d['params'] = params
                 f = r_file[0].replace('/', '', 1).replace('/', '.')
+                if f is None:
+                    f = 'index'
                 print(f)
             except:
                 print(sys.exc_info())
