@@ -1,6 +1,6 @@
 #!/usr/bin/python3.5
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import threading, pickle, re, subprocess, urllib, os, pathlib, tools
+import threading, pickle, re, subprocess, urllib, os, pathlib, tools, sys
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
