@@ -1,7 +1,7 @@
 from apiclient.discovery import build
 from oauth2client import tools
 from oauth2client.contrib.keyring_storage import Storage
-from oauth2client.client import AccessTokenRefreshError
+from oauth2client.client import AccessTokenRefreshError, FlowExchangeError
 from oauth2client.client import flow_from_clientsecrets as FFC
 import httplib2
 import json
