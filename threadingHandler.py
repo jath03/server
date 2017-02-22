@@ -69,19 +69,33 @@ class MyHandler(BaseHTTPRequestHandler):
                 d['params'] = params
                 f = r_file[0].split('.')[0]
                 print(f)
-                exec('from files import {}'.format(f))
+            except IndexError:
+                f = 'index'
+                self.send_response(200)
+                self.send_header('Content-Encoding', 'utf-8')
+                self.send_header('Content-Type', 'text/html')
+                with tools.Capturing() as output:
+                    exec('from files import {}'.format(f))
+                    exec('{}.main(d)'.format(f))
+                if l.data['headers']:
+                    for k, v in l.data['headers']:
+                        self.send_header(k, v)
+                self.end_headers()
+                self.wfile.write(file.stdout)
             except:
-                print(sys.exc_info()[0])
-            self.send_response(200)
-            self.send_header('Content-Encoding', 'utf-8')
-            self.send_header('Content-Type', 'text/html')
-            with tools.Capturing() as output:
-                exec('{}.main(d)'.format(f))
-            if l.data['headers']:
-                for k, v in l.data['headers']:
-                    self.send_header(k, v)
-            self.end_headers()
-            self.wfile.write(file.stdout)
+                print(sys.exc_info())
+            else:
+                self.send_response(200)
+                self.send_header('Content-Encoding', 'utf-8')
+                self.send_header('Content-Type', 'text/html')
+                with tools.Capturing() as output:
+                    exec('from files import {}'.format(f))
+                    exec('{}.main(d)'.format(f))
+                if l.data['headers']:
+                    for k, v in l.data['headers']:
+                        self.send_header(k, v)
+                self.end_headers()
+                self.wfile.write(file.stdout)
     def do_POST(self):
 #        self.myLog()
         try:
