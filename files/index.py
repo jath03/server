@@ -147,5 +147,8 @@ def main(d):
 	</body>
 </html>""".format(error=error))
     else: 
-        return da
+        try:
+            return da
+        except:
+            return None
 
