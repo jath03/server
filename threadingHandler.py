@@ -82,9 +82,9 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-Type', 'text/html')
                 with tools.Capturing() as output:
                     exec('from files import {}'.format(f))
-                    exec('{}.main(d)'.format(f))
-                if l.data['headers']:
-                    for k, v in l.data['headers']:
+                    exec('headers = {}.main(d)'.format(f))
+                if headers:
+                    for k, v in headers:
                         self.send_header(k, v)
                 self.end_headers()
                 self.wfile.write(file.stdout)

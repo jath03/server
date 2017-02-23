@@ -71,9 +71,7 @@ def main(d):
 #                with open('/home/jack/projects/.spy/data/gUsers.dat', 'ab') as f:
 #                    pickle.dump(profile, f)
             if c is None or st.get() is None:
-                with open('/app/files/hds.dat', 'wb') as f:
-                    da = {'Set-Cookie': 'user={u}; Max-Age=2592000\r\n'.format(u=profile['id'])}
-                    pickle.dump(da, f)
+                da = {'Set-Cookie': 'user={u}; Max-Age=2592000\r\n'.format(u=profile['id'])}
                 st.put(credentials) 
             if profile['id'] != '101157566449352653116':
                 print('''<!DOCTYPE html>
@@ -148,5 +146,6 @@ def main(d):
 		<script>window.location = "http://jath03.herokuapp.com/login";</script>
 	</body>
 </html>""".format(error=error))
-
+    else: 
+        return da
 
