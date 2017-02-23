@@ -84,8 +84,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     exec('from files import {}'.format(f))
                     exec('headers = {}.main(d)'.format(f), globals(), locals())
                 print(output)
-                print(dict(globals()))
-                headers = dict(locals())['headers']
+                print(dict(locals())
                 print(headers)
                 if headers:
                     for k, v in headers:
