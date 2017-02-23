@@ -82,7 +82,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-Type', 'text/html')
                 with tools.Capturing() as output:
                     exec('from files import {}'.format(f))
-                    exec('h = {}.main(d)'.format(f), globals(), locals())
+                    exec('h = {}.main(d)'.format(f), myns)
+                h = myns['h']
                 print(h)
                 if h:
                     for k, v in h:
