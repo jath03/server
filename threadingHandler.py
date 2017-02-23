@@ -84,12 +84,13 @@ class MyHandler(BaseHTTPRequestHandler):
                     exec('from files import {}'.format(f))
                     exec('headers = {}.main(d)'.format(f), globals(), locals())
                 print(output)
-                headers = locals()['headers']
+                headers = dict(locals())['headers']
+                print(headers)
                 if headers:
                     for k, v in headers:
                         self.send_header(k, v)
                 self.end_headers()
-                self.wfile.write(file.stdout)
+                self.wfile.write(''.join(output))
     def do_POST(self):
 #        self.myLog()
         try:
