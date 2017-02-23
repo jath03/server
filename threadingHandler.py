@@ -85,7 +85,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     exec('h = {}.main(d)'.format(f), globals(), locals())
                 print(output)
                 print(locals())
-                h = dict(locals())['h']
+                h = dict(locals())['output']
                 print(h)
                 if h:
                     for k, v in h:
