@@ -83,8 +83,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 with tools.Capturing() as output:
                     exec('from files import {}'.format(f))
                     exec('headers = {}.main(d)'.format(f), globals(), locals())
-                    print(globals(), locals())
                 print(output)
+                headers = globals()['headers']
                 if headers:
                     for k, v in headers:
                         self.send_header(k, v)
