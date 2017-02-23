@@ -87,7 +87,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 h = myns['h']
                 print(h)
                 if h:
-                    for k, v in h:
+                    for k, v in h.items():
                         self.send_header(k, v)
                 self.end_headers()
                 self.wfile.write('\n'.join(output).encode('utf-8'))
