@@ -42,7 +42,7 @@ def main(d):
         <script>window.location="http://jath03.herokuapp.com/login"</script>
     </body>
 </html>''') 
-            return
+            return None
     try:
         # The get() function returns the credentials for the Storage object. If no
         # credentials were found, None is returned.
