@@ -90,7 +90,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     for k, v in h:
                         self.send_header(k, v)
                 self.end_headers()
-                self.wfile.write('\n'.join(output))
+                self.wfile.write('\n'.join(output).encode('utf-8'))
     def do_POST(self):
 #        self.myLog()
         try:
