@@ -73,6 +73,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 f = r_file[0].replace('/', '', 1).replace('/', '.')
                 if f == '' or f == ' ':
                     f = 'index'
+                elif f.endswith('.'):
+                    f += 'index'
                 print(f)
             except:
                 print(sys.exc_info())
