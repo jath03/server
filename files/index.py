@@ -12,7 +12,6 @@ import tools
 import sys
 
 def main(d):
-    print('MAIN IS RUNNING IN MAIN')
     # Create a Storage object. This object holds the credentials that your
     # application needs to authorize access to the user's data. The name of the
     # credentials file is provided. If the file does not exist, it is
@@ -43,7 +42,7 @@ def main(d):
         <script>window.location="http://jath03.herokuapp.com/login"</script>
     </body>
 </html>''') 
-            exit()
+            return
     try:
         # The get() function returns the credentials for the Storage object. If no
         # credentials were found, None is returned.
