@@ -84,7 +84,10 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-Encoding', 'utf-8')
                 self.send_header('Content-Type', 'text/html')
                 with tools.Capturing() as output:
-                    exec('from files import {}'.format(f), myns)
+                    if not '.' in f:
+                        exec('from files import {}'.format(f), myns)
+                    else:
+                        exec('from files.{} import {}'.format(f.split('.')[:], myns)
                     exec('h = {}.main(d)'.format(f), myns)
                 h = myns['h']
                 print(h)
