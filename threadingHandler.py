@@ -79,6 +79,10 @@ class MyHandler(BaseHTTPRequestHandler):
                 print(sys.exc_info())
             else:
                 print(f)
+                if f == 'login':
+                    print('F AND LOGIN ARE THE SAME')
+                else:
+                    print('F AND LOGIN ARE NOT THE SAME')
                 myns = dict(d=d)
                 self.send_response(200)
                 self.send_header('Content-Encoding', 'utf-8')
