@@ -75,7 +75,6 @@ class MyHandler(BaseHTTPRequestHandler):
                     f = 'index'
                 elif f.endswith('.'):
                     f += 'index'
-                print(f)
             except:
                 print(sys.exc_info())
             else:
@@ -84,17 +83,14 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-Encoding', 'utf-8')
                 self.send_header('Content-Type', 'text/html')
                 with tools.Capturing() as output:
-                    print(f)
                     try:
                         exec('from files.{} import main'.format(f), myns)
                         exec('h = main(d)', myns)
                     except (AttributeError, ImportError):
                         f += '.index'
-                        print(f)
                         exec('from files.{} import main'.format(f), myns)
                         exec('h = main(d)', myns)
                 h = myns['h']
-                print(h)
                 if h:
                     for k, v in h.items():
                         self.send_header(k, v)

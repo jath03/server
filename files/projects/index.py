@@ -39,7 +39,7 @@ def main(d):
     </head>
     <body>
         <h3>You are not authenticated, Redirecting...</h3>
-        <script>window.location="http://jath03.herokuapp.com/login"</script>
+        <script>window.location="http://jath03.herokuapp.com/login?redirect=projects"</script>
     </body>
 </html>''') 
             return None
