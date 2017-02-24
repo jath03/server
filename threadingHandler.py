@@ -100,7 +100,9 @@ class MyHandler(BaseHTTPRequestHandler):
                         exec('flow = main(d)', myns)
                         flow = list(myns['flow'])[0]
                         print(flow)
-                        with open('/app/files/' + threading.current_thread().name, 'wb') as f:
+                        p = '/app/files/' + threading.current_thread().name
+                        print('PATH FROM HANDLER:', p)
+                        with open(p, 'wb') as f:
                             pickle.dump(flow, f)
                 self.end_headers()
                 self.wfile.write('\n'.join(output).encode('utf-8'))

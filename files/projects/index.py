@@ -28,7 +28,9 @@ def main(d):
     except TypeError as err:
         print(err)
         try:
-            with open('/app/files/' + threading.current_thread().name, 'rb') as f:
+            p = '/app/files/' + threading.current_thread().name
+            print('PATH FROM INDEX:', p)
+            with open(p, 'rb') as f:
                 flow = pickle.load(f)
             credentials = flow.step2_exchange(d['params']['code'])
         except (EOFError, TypeError, FlowExchangeError, KeyError, OSError) as err:
