@@ -85,8 +85,13 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-Type', 'text/html')
                 with tools.Capturing() as output:
                     print(f)
-                    exec('from files.{} import main'.format(f), myns)
-                    exec('h = main(d)'.format(f), myns)
+                    try:
+                        exec('from files.{} import main'.format(f), myns)
+                        exec('h = main(d)'.format(f), myns)
+                    except AttributeError:
+                        f += '.index'
+                        exec('from files.{} import main'.format(f), myns)
+                        exec('h = main(d)'.format(f), myns)
                 h = myns['h']
                 print(h)
                 if h:
