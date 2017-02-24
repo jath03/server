@@ -99,7 +99,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         exec('from files.login import main', myns)
                         exec('flow = main(d)', myns)
                         flow = myns['flow']
-                        with open('/app/files/{}'.format(threading.current_thread().name, 'wb') as f:
+                        with open('/app/files/' + threading.current_thread().name, 'wb') as f:
                             pickle.dump(flow, f)
                 self.end_headers()
                 self.wfile.write('\n'.join(output).encode('utf-8'))
