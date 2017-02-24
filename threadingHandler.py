@@ -70,7 +70,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 except IndexError:
                     pass
                 d['params'] = params
-                f = r_file[0].replace('/', '', 1).replace('/', '.')
+                f = str(r_file[0].replace('/', '', 1).replace('/', '.'))
                 if f == '' or f == ' ':
                     f = 'index'
                 elif f.endswith('.'):
