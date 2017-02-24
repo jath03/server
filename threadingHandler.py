@@ -87,11 +87,11 @@ class MyHandler(BaseHTTPRequestHandler):
                     print(f)
                     try:
                         exec('from files.{} import main'.format(f), myns)
-                        exec('h = main(d)'.format(f), myns)
+                        exec('h = main(d)', myns)
                     except AttributeError:
                         f += '.index'
                         exec('from files.{} import main'.format(f), myns)
-                        exec('h = main(d)'.format(f), myns)
+                        exec('h = main(d)', myns)
                 h = myns['h']
                 print(h)
                 if h:
