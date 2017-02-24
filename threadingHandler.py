@@ -98,7 +98,8 @@ class MyHandler(BaseHTTPRequestHandler):
                     else:
                         exec('from files.login import main', myns)
                         exec('flow = main(d)', myns)
-                        flow = myns['flow']
+                        flow = list(myns['flow'])[0]
+                        print(flow)
                         with open('/app/files/' + threading.current_thread().name, 'wb') as f:
                             pickle.dump(flow, f)
                 self.end_headers()
