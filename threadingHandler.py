@@ -90,6 +90,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         exec('h = main(d)', myns)
                     except AttributeError:
                         f += '.index'
+                        print(f)
                         exec('from files.{} import main'.format(f), myns)
                         exec('h = main(d)', myns)
                 h = myns['h']
