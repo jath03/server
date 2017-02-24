@@ -87,7 +87,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     if not '.' in f:
                         exec('from files import {}'.format(f), myns)
                     else:
-                        exec('from files.{} import {}'.format(f.split('.')[0], f.spllit('.')[1]), myns)
+                        exec('from files.{} import {}'.format(f.split('.')[0], f.split('.')[1]), myns)
                     exec('h = {}.main(d)'.format(f), myns)
                 h = myns['h']
                 print(h)
