@@ -13,7 +13,6 @@ import io
 import tools
 
 def main(d):
-  print('MAIN IS RUNNING IN LOGIN')
   cookies = tools.cookies(method='read')
   subprocess.run('sudo rm /app/files/flow.dat /app/files/session.dat', shell=True)
   w = json.loads(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"'))
@@ -32,7 +31,10 @@ def main(d):
       pickle.dump(flow, f)
     auth_uri = flow.step1_get_authorize_url()
   else:
-    auth_uri = 'http://jath03.herokuapp.com/'
+    try:
+      auth_uri = 'http://jath03.herokuapp.com/' + str(d['params']['redirect'])
+    except:
+      auth_uri = 'http://jath03.heorkuapp.com/'
 
   print('''<!DOCTYPE html>
 <html>
