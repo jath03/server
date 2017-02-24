@@ -97,7 +97,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         if h:
                             for k, v in h.items():
                                 self.send_header(k, v)
-                    else:
+                    elif f == 'login':
                         exec('from files.login import main', myns)
                         exec('flow = main(d)', myns)
                         flow = list(myns['flow'])[0]
