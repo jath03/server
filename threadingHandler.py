@@ -78,6 +78,7 @@ class MyHandler(BaseHTTPRequestHandler):
             except:
                 print(sys.exc_info())
             else:
+                print(f)
                 myns = dict(d=d)
                 self.send_response(200)
                 self.send_header('Content-Encoding', 'utf-8')
