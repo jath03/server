@@ -44,13 +44,13 @@ def main(d):
         <h3>You are not authenticated, Redirecting...</h3>
         <p>{}</p>
         <script>
-            function sleep(ms) {
+            function sleep(ms) {{
                 return new Promise(resolve => setTimeout(resolve, ms));
-            }
-            async function foo() {
+            }}
+            async function foo() {{
                 await sleep(5000);
                 window.location="http://jath03.herokuapp.com/login?redirect=projects";
-            }
+            }}
             foo();
         </script>
     </body>
