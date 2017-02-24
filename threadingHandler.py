@@ -88,7 +88,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     try:
                         exec('from files.{} import main'.format(f), myns)
                         exec('h = main(d)', myns)
-                    except AttributeError:
+                    except (AttributeError, ImportError):
                         f += '.index'
                         print(f)
                         exec('from files.{} import main'.format(f), myns)
