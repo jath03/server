@@ -10,6 +10,7 @@ import subprocess
 import pickle
 import tools
 import sys
+import threading
 
 def main(d):
     # Create a Storage object. This object holds the credentials that your
@@ -27,10 +28,10 @@ def main(d):
     except TypeError as err:
         print(err)
         try:
-            with open('/app/files/flow.dat', 'r+b') as f:
+            with open('/app/files/' + threading.current_thread().name, 'rb') as f:
                 flow = pickle.load(f)
-                credentials = flow.step2_exchange(d['params']['code'])
-        except (EOFError, TypeError, FlowExchangeError, KeyError) as err:
+            credentials = flow.step2_exchange(d['params']['code'])
+        except (EOFError, TypeError, FlowExchangeError, KeyError, OSError) as err:
             credentials = None
             print('''\
 <!DOCTYPE html>

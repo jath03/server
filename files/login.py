@@ -14,7 +14,6 @@ import tools
 
 def main(d):
   cookies = tools.cookies(method='read')
-  subprocess.run('sudo rm /app/files/flow.dat /app/files/session.dat', shell=True)
   w = json.loads(str(os.environ['GOOGLE-CLIENT-SECRETS']).replace('\'', '\"'))
   with open('/tmp/client_secrets.json', 'w') as f:
     json.dump(w, f)
@@ -27,8 +26,7 @@ def main(d):
       flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com/{}'.format(str(d['params']['redirect'])))
     except (KeyError, TypeError) as err:
       flow = FFC('/tmp/client_secrets.json', scope=('https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'), redirect_uri='http://jath03.herokuapp.com')
-    with open('/app/files/flow.dat', 'wb') as f:
-      pickle.dump(flow, f)
+    yield flow
     auth_uri = flow.step1_get_authorize_url()
   else:
     try:

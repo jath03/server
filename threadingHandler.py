@@ -83,17 +83,24 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-Encoding', 'utf-8')
                 self.send_header('Content-Type', 'text/html')
                 with tools.Capturing() as output:
-                    try:
-                        exec('from files.{} import main'.format(f), myns)
-                        exec('h = main(d)', myns)
-                    except (AttributeError, ImportError):
-                        f += '.index'
-                        exec('from files.{} import main'.format(f), myns)
-                        exec('h = main(d)', myns)
-                h = myns['h']
-                if h:
-                    for k, v in h.items():
-                        self.send_header(k, v)
+                    if f != 'login':
+                        try:
+                            exec('from files.{} import main'.format(f), myns)
+                            exec('h = main(d)', myns)
+                        except (AttributeError, ImportError):
+                            f += '.index'
+                            exec('from files.{} import main'.format(f), myns)
+                            exec('h = main(d)', myns)
+                        h = myns['h']
+                        if h:
+                            for k, v in h.items():
+                                self.send_header(k, v)
+                    else:
+                        exec('from files.login import main', myns)
+                        exec('flow = main(d)', myns)
+                        flow = myns['flow']
+                        with open('/app/files/{}'.format(threading.current_thread().name, 'wb') as f:
+                            pickle.dump(flow, f)
                 self.end_headers()
                 self.wfile.write('\n'.join(output).encode('utf-8'))
     def do_POST(self):
