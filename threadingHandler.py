@@ -88,8 +88,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-Encoding', 'utf-8')
                 self.send_header('Content-Type', 'text/html')
                 with tools.Capturing() as output:
-                    print('\"'+f+'\"')
                     if f != 'login':
+                        print(f, 'AND login ARE NOT THE SAME')
                         try:
                             exec('from files.{} import main'.format(f), myns)
                             exec('h = main(d)', myns)
@@ -102,6 +102,7 @@ class MyHandler(BaseHTTPRequestHandler):
                             for k, v in h.items():
                                 self.send_header(k, v)
                     elif f == 'login':
+                        print(f, 'AND login ARE THE SAME')
                         exec('from files.login import main', myns)
                         exec('flow = main(d)', myns)
                         flow = list(myns['flow'])[0]
