@@ -42,6 +42,7 @@ def main(d):
     </head>
     <body>
         <h3>You are not authenticated, Redirecting...</h3>
+        <p>{}</p>
         <script>
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
@@ -53,7 +54,7 @@ def main(d):
             foo();
         </script>
     </body>
-</html>''') 
+</html>'''.format(err)) 
             return None
     try:
         # The get() function returns the credentials for the Storage object. If no
