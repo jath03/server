@@ -42,7 +42,16 @@ def main(d):
     </head>
     <body>
         <h3>You are not authenticated, Redirecting...</h3>
-        <script>window.location="http://jath03.herokuapp.com/login?redirect=projects"</script>
+        <script>
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            async function foo() {
+                await sleep(5000);
+                window.location="http://jath03.herokuapp.com/login?redirect=projects";
+            }
+            foo();
+        </script>
     </body>
 </html>''') 
             return None
