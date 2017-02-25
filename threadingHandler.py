@@ -90,13 +90,13 @@ class MyHandler(BaseHTTPRequestHandler):
                 if f != 'login':
                     print(f, 'AND login ARE NOT THE SAME')
                     try:
-                        exec('from files.{} import main'.format(f), myns)
                         with tools.Capturing() as output:
+                            exec('from files.{} import main'.format(f), myns)
                             exec('h = main(d)', myns)
                     except (AttributeError, ImportError):
                         f += '.index'
-                        exec('from files.{} import main'.format(f), myns)
                         with tools.Capturing() as output:
+                            exec('from files.{} import main'.format(f), myns)
                             exec('h = main(d)', myns)
                     h = myns['h']
                     if h:
@@ -104,8 +104,8 @@ class MyHandler(BaseHTTPRequestHandler):
                             self.send_header(k, v)
                 elif f == 'login':
                     print(f, 'AND login ARE THE SAME')
-                    exec('from files.login import main', myns)
                     with tools.Capturing() as output:
+                        exec('from files.login import main', myns)
                         exec('flow = main(d)', myns)
                     print('LOGIN RAN')
                     print(myns)
