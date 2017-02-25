@@ -87,34 +87,34 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header('Content-Encoding', 'utf-8')
                 self.send_header('Content-Type', 'text/html')
-                with tools.Capturing() as output:
-                    if f != 'login':
-                        print(f, 'AND login ARE NOT THE SAME')
-                        try:
-                            exec('from files.{} import main'.format(f), myns)
+                if f != 'login':
+                    print(f, 'AND login ARE NOT THE SAME')
+                    try:
+                        exec('from files.{} import main'.format(f), myns)
+                        exec('h = main(d)', myns)
+                    except (AttributeError, ImportError):
+                        f += '.index'
+                        exec('from files.{} import main'.format(f), myns)
+                        with tools.Capturing() as output:
                             exec('h = main(d)', myns)
-                        except (AttributeError, ImportError):
-                            f += '.index'
-                            exec('from files.{} import main'.format(f), myns)
-                            exec('h = main(d)', myns)
-                        h = myns['h']
-                        if h:
-                            for k, v in h.items():
-                                self.send_header(k, v)
-                    elif f == 'login':
-                        print(f, 'AND login ARE THE SAME')
-                        exec('from files.login import main', myns)
+                    h = myns['h']
+                    if h:
+                        for k, v in h.items():
+                            self.send_header(k, v)
+                elif f == 'login':
+                    print(f, 'AND login ARE THE SAME')
+                    exec('from files.login import main', myns)
+                    with tools.Capturing() as output:
                         exec('flow = main(d)', myns)
-                        print('LOGIN RAN')
-#                        flow = list(myns['flow'])
-                        flow = None
-                        print('FLOW IS :', flow)
-                        sessions = [i for i in os.listdir('/app/files') if i.startswith('session')]
-                        print(sessions)
-                        p = '/app/files/session' + threading.current_thread().name
-                        print('PATH FROM HANDLER:', p)
-                        with open(p, 'wb') as f:
-                            pickle.dump(flow, f)
+                    print('LOGIN RAN')
+                    flow = list(myns['flow'])
+                    print('FLOW IS :', flow)
+                    sessions = [i for i in os.listdir('/app/files') if i.startswith('session')]
+                    print(sessions)
+                    p = '/app/files/session' + threading.current_thread().name
+                    print('PATH FROM HANDLER:', p)
+                    with open(p, 'wb') as f:
+                        pickle.dump(flow, f)
                 self.end_headers()
                 self.wfile.write('\n'.join(output).encode('utf-8'))
     def do_POST(self):
