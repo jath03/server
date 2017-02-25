@@ -44,6 +44,7 @@ def main(d):
         <h3>You are not authenticated, Redirecting...</h3>
         <p>{}</p>
         <script>
+            "use strict";
             function sleep(ms) {{
                 return new Promise(resolve => setTimeout(resolve, ms));
             }}
