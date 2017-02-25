@@ -37,7 +37,15 @@ def main(d):
   print('''<!DOCTYPE html>
 <html>
 	<head>
-		<script>window.location = "{}";</script>
+		<script>
+                    function sleep(ms) {{
+                        return new Promise(resolve => setTimeout(resolve, ms));
+                    }};
+                    async function foo() {{
+                        sleep(5000);
+                        window.location = "{}";
+                    }};
+                </script>
 	</head>
 	<body>
 	</body>
