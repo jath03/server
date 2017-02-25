@@ -38,15 +38,7 @@ def main(d):
 <html>
 	<head>
 		<script>
-                    "use strict";
-                    function sleep(ms) {{
-                        return new Promise(resolve => setTimeout(resolve, ms));
-                    }}
-                    async function foo() {{
-                        sleep(5000);
-                        window.location = "{}";
-                    }}
-                    foo();
+                    window.location = "{}";
                 </script>
 	</head>
 	<body>

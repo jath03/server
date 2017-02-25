@@ -44,15 +44,7 @@ def main(d):
         <h3>You are not authenticated, Redirecting...</h3>
         <p>{}</p>
         <script>
-            "use strict";
-            var sleep = function(ms) {{
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }};
-            async function foo() {{
-                await sleep(5000);
-                window.location="http://jath03.herokuapp.com/login?redirect=projects";
-            }};
-            foo();
+            window.location="http://jath03.herokuapp.com/login?redirect=projects";
         </script>
     </body>
 </html>'''.format(err)) 
