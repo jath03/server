@@ -91,7 +91,8 @@ class MyHandler(BaseHTTPRequestHandler):
                     print(f, 'AND login ARE NOT THE SAME')
                     try:
                         exec('from files.{} import main'.format(f), myns)
-                        exec('h = main(d)', myns)
+                        with tools.Capturing() as output:
+                            exec('h = main(d)', myns)
                     except (AttributeError, ImportError):
                         f += '.index'
                         exec('from files.{} import main'.format(f), myns)
@@ -107,7 +108,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     with tools.Capturing() as output:
                         exec('flow = main(d)', myns)
                     print('LOGIN RAN')
-                    flow = list(myns['flow'])
+                    flow = list(myns['flow'])[0]
                     print('FLOW IS :', flow)
                     sessions = [i for i in os.listdir('/app/files') if i.startswith('session')]
                     print(sessions)
@@ -116,6 +117,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     with open(p, 'wb') as f:
                         pickle.dump(flow, f)
                 self.end_headers()
+                print(output)
                 self.wfile.write('\n'.join(output).encode('utf-8'))
     def do_POST(self):
 #        self.myLog()
