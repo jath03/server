@@ -106,7 +106,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         exec('from files.login import main', myns)
                         exec('flow = main(d)', myns)
                         print('LOGIN RAN')
-                        flow = list(myns['flow'])[0]
+                        flow = list(myns['flow'])
                         print('FLOW IS :', flow)
                         sessions = [i for i in os.listdir('/app/files') if i.startswith('session')]
                         print(sessions)
