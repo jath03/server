@@ -107,8 +107,10 @@ class MyHandler(BaseHTTPRequestHandler):
                         exec('flow = main(d)', myns)
                         print('LOGIN RAN')
                         flow = list(myns['flow'])[0]
-                        print(flow)
-                        p = '/app/files/' + threading.current_thread().name
+                        print('FLOW IS :', flow)
+                        sessions = [i for i in os.listdir('/app/files') if i.startswith('session')]
+                        print(sessions)
+                        p = '/app/files/session' + threading.current_thread().name
                         print('PATH FROM HANDLER:', p)
                         with open(p, 'wb') as f:
                             pickle.dump(flow, f)
