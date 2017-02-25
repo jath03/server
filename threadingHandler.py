@@ -105,6 +105,7 @@ class MyHandler(BaseHTTPRequestHandler):
                         print(f, 'AND login ARE THE SAME')
                         exec('from files.login import main', myns)
                         exec('flow = main(d)', myns)
+                        print('LOGIN RAN')
                         flow = list(myns['flow'])[0]
                         print(flow)
                         p = '/app/files/' + threading.current_thread().name
