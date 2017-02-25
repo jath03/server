@@ -40,11 +40,12 @@ def main(d):
 		<script>
                     function sleep(ms) {{
                         return new Promise(resolve => setTimeout(resolve, ms));
-                    }};
+                    }}
                     async function foo() {{
                         sleep(5000);
                         window.location = "{}";
-                    }};
+                    }}
+                    foo();
                 </script>
 	</head>
 	<body>

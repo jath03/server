@@ -46,11 +46,11 @@ def main(d):
         <script>
             function sleep(ms) {{
                 return new Promise(resolve => setTimeout(resolve, ms));
-            }};
+            }}
             async function foo() {{
                 await sleep(5000);
                 window.location="http://jath03.herokuapp.com/login?redirect=projects";
-            }};
+            }}
             foo();
         </script>
     </body>
