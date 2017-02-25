@@ -108,6 +108,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     with tools.Capturing() as output:
                         exec('flow = main(d)', myns)
                     print('LOGIN RAN')
+                    print(myns)
                     flow = list(myns['flow'])[0]
                     print('FLOW IS :', flow)
                     sessions = [i for i in os.listdir('/app/files') if i.startswith('session')]
