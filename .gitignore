@@ -1,2 +1,8 @@
 *.pyc
 site
+__pycache__/
+*.save
+requirements.txt
+venv/
+runtime.txt
+Procfile
