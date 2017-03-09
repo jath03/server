@@ -46,3 +46,7 @@ nbproject
 .project
 .settings
 composer.lock
+
+
+__pycache__/
+*.pyc
